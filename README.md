@@ -20,12 +20,21 @@ modelled after real EEG recordings.
 
 ---
 
+## Thesis Document
+
+The full written thesis is available in this repository:
+
+**[`honors_thesis_comp_neuro.pdf`](honors_thesis_comp_neuro.pdf)**
+
+---
+
 ## Repository Structure
 
 ```
 Honors_Thesis/
 │
 ├── README.md                             # This file
+├── honors_thesis_comp_neuro.pdf          # Full thesis document
 ├── code.py                               # Original monolithic script (archived)
 ├── requirements.txt                      # Python dependencies
 │
