@@ -6,7 +6,7 @@
 
 EEG is a handful of electrodes glued to a scalp recording voltage fluctuations at ~250–1000 Hz. The signal is the smeared, distance-attenuated sum of synchronous post-synaptic potentials from millions of cortical neurons. Think of it as a microphone in a stadium: you can hear that the crowd is roaring, you cannot hear any one person.
 
-Because you are summing huge populations, the only things that survive are activities where lots of neurons fire together in time. That synchrony tends to be rhythmic — populations of neurons get into oscillatory regimes — so EEG is dominated by **band-limited rhythms** rather than the spike-like activity you would see with an intracortical electrode.
+Because you are summing huge populations, the only things that survive are activities where lots of neurons fire together in time. That synchrony tends to be rhythmic - populations of neurons get into oscillatory regimes - so EEG is dominated by **band-limited rhythms** rather than the spike-like activity you would see with an intracortical electrode.
 
 ## The canonical frequency bands
 
@@ -18,7 +18,7 @@ Neuroscientists carved the EEG spectrum into five bands long before anyone had a
 | Theta  | 4–8 Hz     | Drowsy, memory encoding, navigation |
 | Alpha  | 8–12 Hz    | Eyes closed, idling visual cortex |
 | Beta   | 12–30 Hz   | Active focus, motor control |
-| Gamma  | 30–100 Hz  | "Binding" — perception, attention, higher cognition |
+| Gamma  | 30–100 Hz  | "Binding" - perception, attention, higher cognition |
 
 The bands are real in the sense that distinct generative mechanisms produce them, but the boundaries are conventional. Half of applied EEG / BCI work boils down to: *is band X elevated right now?*
 
@@ -26,9 +26,9 @@ The bands are real in the sense that distinct generative mechanisms produce them
 
 Three reasons:
 
-**1. The noise floor is not white.** Real neural noise has a roughly 1/f spectrum — more power at low frequencies, less at high. So a "5 µV bump at 2 Hz" is buried in much more background than a 5 µV bump at 40 Hz. Detectors tuned on white-noise assumptions will be wildly miscalibrated on real data.
+**1. The noise floor is not white.** Real neural noise has a roughly 1/f spectrum - more power at low frequencies, less at high. So a "5 µV bump at 2 Hz" is buried in much more background than a 5 µV bump at 40 Hz. Detectors tuned on white-noise assumptions will be wildly miscalibrated on real data.
 
-**2. Oscillations are bursty, not stationary.** The textbook picture — "alpha is an 8–12 Hz sine wave" — is wrong. Cortical rhythms appear in *bursts*: a few cycles, then silence, then more. Methods that average power over long windows smear these bursts into something that looks like weak stationary band power, and the detection problem becomes much harder than it needs to be.
+**2. Oscillations are bursty, not stationary.** The textbook picture - "alpha is an 8–12 Hz sine wave" - is wrong. Cortical rhythms appear in *bursts*: a few cycles, then silence, then more. Methods that average power over long windows smear these bursts into something that looks like weak stationary band power, and the detection problem becomes much harder than it needs to be.
 
 **3. Inter-trial / inter-subject noise is structured, not random.** When you record from a real brain, the "noise" is other brain activity. It has temporal structure, it correlates across electrodes, and it changes slowly. A detector that handles white Gaussian noise gracefully can fall apart when the noise has actual statistics.
 
@@ -46,7 +46,7 @@ So instead, model the signal as a **sequence of discrete tokens**, where each to
 [θ θ α α α β γ β β α α α θ δ δ ...]
 ```
 
-Each token, when "rendered," becomes a short Morlet wavelet — a Gaussian-windowed sinusoid at that band's characteristic frequency. The full signal is the concatenation (or overlap) of those bursts. That is the generative model.
+Each token, when "rendered," becomes a short Morlet wavelet - a Gaussian-windowed sinusoid at that band's characteristic frequency. The full signal is the concatenation (or overlap) of those bursts. That is the generative model.
 
 The sequence itself is sampled from an **n-gram model** whose transition matrix is drawn from a Dirichlet prior. Bigrams give first-order Markov dependence (the probability of gamma next depends on what just happened); higher-order n-grams give longer-range structure. You can crank the Dirichlet concentration to interpolate between near-deterministic sequences and uniform random ones.
 
@@ -73,4 +73,4 @@ Then plot AUC vs. noise level per band per noise regime. This tells you, concret
 
 ## The headline
 
-EEG bands stay detectable across a surprisingly wide noise range *when you model the signal correctly* — as bursts indexed by structured sequences, not as stationary mixtures. The point of the thesis is partly the numbers, but mostly the framework: a clean, reproducible benchmark for time-frequency detection on a generative model that respects the actual statistics of neural oscillations.
+EEG bands stay detectable across a surprisingly wide noise range *when you model the signal correctly* - as bursts indexed by structured sequences, not as stationary mixtures. The point of the thesis is partly the numbers, but mostly the framework: a clean, reproducible benchmark for time-frequency detection on a generative model that respects the actual statistics of neural oscillations.
