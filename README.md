@@ -1,8 +1,6 @@
 # EEG Frequency-Band Detection Under Noise
 
-[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Brown University](https://img.shields.io/badge/Brown%20University-Honors%20Thesis-A8201A.svg)](https://www.brown.edu/)
+Brown University Honors Thesis in Computational Neuroscience. Python 3.9+. MIT License.
 
 **Canonical EEG frequency bands remain reliably detectable under realistic noise regimes when the underlying signal is modeled as a sequence of time-localised Morlet wavelet bursts rather than as stationary band-limited oscillations.**
 
